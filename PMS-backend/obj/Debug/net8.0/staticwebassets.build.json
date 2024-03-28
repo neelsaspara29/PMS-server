@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "pVkJWHxL7YqPxxjyfQEaN/nCb7FZheFHVUHhhnZlNHM=",
+  "Source": "PMS-backend",
+  "BasePath": "_content/PMS-backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
