@@ -13,11 +13,13 @@ namespace PMS_backend.Controllers
     {
         private readonly UserDbContext _context;
         private readonly PasswordHasher _passwordHasher;
+        private readonly string _jwtSecret;
 
-        public AuthController(UserDbContext context)
+        public AuthController(UserDbContext context, IConfiguration configuration)
         {
             _context = context;
             _passwordHasher = new PasswordHasher();
+            _jwtSecret = configuration["Jwt:Key"];
         }
 
         [HttpPost("register")]
@@ -43,6 +45,24 @@ namespace PMS_backend.Controllers
 
 
             return Ok(response22);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginBody body)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.email == body.email);
+
+            if (user == null || !_passwordHasher.VerifyPassword(user.password, body.password))
+            {
+                var invalidCredResponse = new StandardResponse(false, "Invalid Credentials.");
+                return Ok(invalidCredResponse);
+            }
+
+            var token = JwtTokenGenerator.GenerateToken(user.email, _jwtSecret);
+
+            var finalResponse = new StandardResponse(true, "User Login Success.", new {  token});
+
+            return Ok(finalResponse);
         }
     }
 }

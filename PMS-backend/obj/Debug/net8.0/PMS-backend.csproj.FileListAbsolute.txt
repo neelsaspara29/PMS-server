@@ -138,3 +138,4 @@ D:\584 final project\PMS-backend\PMS-backend\obj\Debug\net8.0\refint\PMS-backend
 D:\584 final project\PMS-backend\PMS-backend\obj\Debug\net8.0\PMS-backend.pdb
 D:\584 final project\PMS-backend\PMS-backend\obj\Debug\net8.0\PMS-backend.genruntimeconfig.cache
 D:\584 final project\PMS-backend\PMS-backend\obj\Debug\net8.0\ref\PMS-backend.dll
+D:\584 final project\PMS-backend\PMS-backend\obj\Debug\net8.0\PMS-backend.sourcelink.json
