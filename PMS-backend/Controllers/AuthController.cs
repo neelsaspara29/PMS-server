@@ -36,7 +36,7 @@ namespace PMS_backend.Controllers
                 userName = body.userName,
                 email = body.email,
                 password = _passwordHasher.HashPassword(body.password),
-                userRole = body.userRole // Ensure this role exists or manage roles accordingly.
+                userRole = body.userRole 
             };
 
             _context.Users.Add(user);
