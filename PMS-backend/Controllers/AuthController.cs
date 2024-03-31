@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ namespace PMS_backend.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterUser(RegisterBody body)
+        public async Task<IActionResult> RegisterUser([FromBody]RegisterBody body)
         {
             if (await _context.Users.AnyAsync(x => x.email == body.email))
             {
@@ -48,7 +49,7 @@ namespace PMS_backend.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginBody body)
+        public async Task<IActionResult> Login([FromBody]LoginBody body)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.email == body.email);
 
