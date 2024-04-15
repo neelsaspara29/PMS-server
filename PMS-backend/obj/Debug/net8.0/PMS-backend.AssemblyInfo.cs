@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PMS-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85f0fa103c8371c513be6f15bff3bae442b61d34")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff185dfe8252557ba4f96327f3e41b34bfa2e5d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("PMS-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PMS-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

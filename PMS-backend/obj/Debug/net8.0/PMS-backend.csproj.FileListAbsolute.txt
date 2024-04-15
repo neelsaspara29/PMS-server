@@ -139,3 +139,6 @@ D:\584 final project\PMS-backend\PMS-backend\obj\Debug\net8.0\PMS-backend.pdb
 D:\584 final project\PMS-backend\PMS-backend\obj\Debug\net8.0\PMS-backend.genruntimeconfig.cache
 D:\584 final project\PMS-backend\PMS-backend\obj\Debug\net8.0\ref\PMS-backend.dll
 D:\584 final project\PMS-backend\PMS-backend\obj\Debug\net8.0\PMS-backend.sourcelink.json
+D:\584 final project\PMS-backend\PMS-backend\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+D:\584 final project\PMS-backend\PMS-backend\bin\Debug\net8.0\MailKit.dll
+D:\584 final project\PMS-backend\PMS-backend\bin\Debug\net8.0\MimeKit.dll

@@ -16,5 +16,7 @@ namespace PMS_backend.DataContext
         }
 
         public DbSet<UserModel> Users { get; set; }
+
+        public DbSet<PatientModel> Patients { get; set; }
     }
 }

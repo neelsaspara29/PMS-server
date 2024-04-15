@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PMS_backend.DataContext;
@@ -16,7 +14,7 @@ namespace PMS_backend.Controllers
         private readonly PasswordHasher _passwordHasher;
         private readonly string _jwtSecret;
 
-        public AuthController(UserDbContext context, IConfiguration configuration)
+        public AuthController(UserDbContext context, IConfiguration configuration, IEmailService emailService)
         {
             _context = context;
             _passwordHasher = new PasswordHasher();
@@ -55,6 +53,7 @@ namespace PMS_backend.Controllers
 
             if (user == null || !_passwordHasher.VerifyPassword(user.password, body.password))
             {
+                // await _emailService.SendEmailAsync("neelsaspara2023@gmail.com", "hello", "hello");
                 var invalidCredResponse = new StandardResponse(false, "Invalid Credentials.");
                 return Ok(invalidCredResponse);
             }
@@ -65,5 +64,6 @@ namespace PMS_backend.Controllers
 
             return Ok(finalResponse);
         }
+
     }
 }
