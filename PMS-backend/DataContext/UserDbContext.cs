@@ -18,5 +18,15 @@ namespace PMS_backend.DataContext
         public DbSet<UserModel> Users { get; set; }
 
         public DbSet<PatientModel> Patients { get; set; }
+
+        public DbSet<PatientReportsModel> PatientReports { get; set; }  
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PatientModel>()
+         .HasMany(p => p.Reports)
+         .WithOne(r => r.Patient)
+         .HasForeignKey(r => r.PatientId);
+        }
     }
 }

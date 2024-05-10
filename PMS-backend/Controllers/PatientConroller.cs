@@ -46,5 +46,29 @@ namespace PMS_backend.Controllers
             return Ok(response);
         }
 
+        [HttpGet("patient/get/all")]
+        public async Task<IActionResult> GetAllPatients()
+        {
+            var patients = await _context.Patients.ToListAsync();
+            var response = new StandardResponse(true, "Patient Retrieve Successfully", patients);
+            return Ok(response);
+        }
+
+        [HttpGet("patient/get/detail/{patientId}")]
+        public async Task<IActionResult> GetPatientDetail(int patientId)
+        {
+            var patientData = await _context.Patients
+                            .Where(pr => pr.Id == patientId).FirstAsync();
+
+            if (patientData == null)
+            {
+                var response = new StandardResponse(false, "Patient Not Found.");
+
+                return Ok(response);
+            }
+
+            var patientResponse = new StandardResponse(true, "Patient Retrieved", patientData);
+            return Ok(patientResponse);
+        }
     }
 }

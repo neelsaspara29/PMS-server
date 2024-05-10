@@ -8,5 +8,7 @@
         public string mobile_number { get; set; }
         public string gender { get; set; }
         public DateTime dob { get; set; }
+
+        public virtual ICollection<PatientReportsModel> Reports { get; set; } = new List<PatientReportsModel>();
     }
-}
+}   
