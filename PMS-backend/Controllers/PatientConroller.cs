@@ -11,12 +11,10 @@ namespace PMS_backend.Controllers
     public class PatientConroller : Controller
     {
         private readonly UserDbContext _context;
-        private readonly IEmailService _emailService;
    
-        public PatientConroller(UserDbContext context, IEmailService emailService)
+        public PatientConroller(UserDbContext context)
         {
             _context = context;
-            _emailService = emailService;
         }
 
         [Authorize]
@@ -39,13 +37,14 @@ namespace PMS_backend.Controllers
 
             _context.Patients.Add(patient);
             await _context.SaveChangesAsync();
-            await _emailService.SendEmailAsync(patient.email, "Welcome to Our App", "Welcome!");
 
             var response = new StandardResponse(true, "Patient Created Successfuly.");
 
             return Ok(response);
         }
 
+        // api for get list of patient
+        [Authorize]
         [HttpGet("patient/get/all")]
         public async Task<IActionResult> GetAllPatients()
         {

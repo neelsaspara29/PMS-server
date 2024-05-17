@@ -14,13 +14,14 @@ namespace PMS_backend.Controllers
         private readonly PasswordHasher _passwordHasher;
         private readonly string _jwtSecret;
 
-        public AuthController(UserDbContext context, IConfiguration configuration, IEmailService emailService)
+        public AuthController(UserDbContext context, IConfiguration configuration)
         {
             _context = context;
             _passwordHasher = new PasswordHasher();
             _jwtSecret = configuration["Jwt:Key"];
         }
 
+        //api for registration
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody]RegisterBody body)
         {
@@ -47,6 +48,8 @@ namespace PMS_backend.Controllers
             return Ok(response22);
         }
 
+        // api for add admin
+        [Authorize]
         [HttpPost("admin/add")]
         public async Task<IActionResult> AddAdmin([FromBody] RegisterBody body)
         {
@@ -69,10 +72,11 @@ namespace PMS_backend.Controllers
 
             var response22 = new StandardResponse(true, "User Added Successfuly.");
 
-
             return Ok(response22);
         }
 
+        //api for get list of registerd user
+        [Authorize]
         [HttpGet("user/get/all")]
         public async Task<IActionResult> GetAllUser()
         {
@@ -81,6 +85,8 @@ namespace PMS_backend.Controllers
             return Ok(response);
         }
 
+        //api for approve user
+        [Authorize]
         [HttpGet("user/approve/{userId}/{role}")]
         public async Task<IActionResult> ApproveUser(int userId, string role)
         {
@@ -94,6 +100,8 @@ namespace PMS_backend.Controllers
             return Ok(response);
         }
 
+        //api for reject user
+        [Authorize]
         [HttpGet("user/reject/{userId}")]
         public async Task<IActionResult> RejectUser(int userId, string role)
         {
@@ -106,6 +114,8 @@ namespace PMS_backend.Controllers
             return Ok(response);
         }
 
+        //api for delete user
+        [Authorize]
         [HttpGet("user/delete/{userId}")]
         public async Task<IActionResult> DeleteUser(int userId)
         {
@@ -117,6 +127,8 @@ namespace PMS_backend.Controllers
             return Ok(response);
         }
 
+
+        //api for login
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]LoginBody body)
         {
@@ -124,7 +136,6 @@ namespace PMS_backend.Controllers
 
             if (user == null || !_passwordHasher.VerifyPassword(user.password, body.password))
             {
-                // await _emailService.SendEmailAsync("neelsaspara2023@gmail.com", "hello", "hello");
                 var invalidCredResponse = new StandardResponse(false, "Invalid Credentials.");
                 return Ok(invalidCredResponse);
             }

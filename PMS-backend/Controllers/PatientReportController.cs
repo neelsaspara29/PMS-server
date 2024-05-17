@@ -56,6 +56,7 @@ namespace PMS_backend.Controllers
             return Ok(response);
         }
 
+        [Authorize]
         [HttpGet("report/{patientId}")]
         public async Task<IActionResult> GetPatientReports(int patientId)
         {
@@ -72,12 +73,7 @@ namespace PMS_backend.Controllers
 
             var reportsResponse = new StandardResponse(true, "Patient Report Retrieved", reports);
             return Ok(reportsResponse);
-        }
-
-        
-
-
- 
+        } 
 
     [HttpPost("/user/public/detail")]
     public async Task<IActionResult> GetPattientDetailByEmail([FromBody] GetReportByIdBody body)

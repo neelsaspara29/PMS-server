@@ -3,9 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PMS_backend.DataContext;
-using PMS_backend.Services;
 using System.Text;
-using System.Text.Json;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,8 +68,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
            };     
        });
-
-builder.Services.AddSingleton<IEmailService, EmailService>();
 
 
 var app = builder.Build();
